@@ -49,7 +49,7 @@ function shuffle(ary) {
 // For example `max([1, 9, 3, 5, 2])`` should return 9
 
 function max(ary) {
-	let aryMax = ary[0] //0 is not good - what if the values are negative?
+	let aryMax = ary[0] //setting it as 0 is not good - what if the values are negative?
 	for (let i = 0; i < ary.length; i++){
 		if (ary[i] > aryMax) {
 		aryMax = ary[i]
@@ -66,7 +66,8 @@ function max(ary) {
 // For example `union([1, 5, 2], [2, 3, 6])`` should return [1, 5, 2, 3, 6]
 
 function union(ary1, ary2) {
-	let aryUnion = ary1
+	// let aryUnion = ary1 //shouldn't do this, array is an object!, ary1 will have the same value as aryUnion
+	let aryUnion = ary1.slice()
 	for (let i = 0; i < ary2.length; i++) {
 		let dup = false
 		for (let j = 0; j < ary1.length; j++) {
