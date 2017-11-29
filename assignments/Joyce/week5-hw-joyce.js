@@ -7,30 +7,28 @@
 // radnomGroup(members, 2) //return [['Andy', 'Ben', 'Denny'], ['Carol', 'Eric']]
 
 function randomGroup(members, groupNumber){
-	let membersCopy = members.splice(0)
+	let membersCopy = members.slice()
 	let groups = []
-	let memberCount = membersCopy.length
-	let grpMemberCount = Math.floor(membersCopy.length / groupNumber)
-	let bigGrpCount = membersCopy.length % groupNumber
+	let grpMemberCount = Math.floor(membersCopy.length / groupNumber) //2
+	let bigGrpCount = membersCopy.length % groupNumber //2
 
 	for (let i = 0; i < groupNumber; i++) {
 		let currentGroup = []
 
-		if (i === (bigGrpCount - 1)) {
-			for (let i = 0; i < grpMemberCount; i++) {
-				let ranNum = Math.floor(Math.random() * (memberCount))
+		if (i < bigGrpCount) {
+			for (let i = 0; i < grpMemberCount + 1; i++) {
+				let ranNum = Math.floor(Math.random() * (membersCopy.length))
 				currentGroup.push(membersCopy[ranNum])
 				membersCopy.splice(ranNum, 1)
 			}
 		}
 
 		else {
-			for (let i = 0; i < grpMemberCount + 1; i++) {
-				let ranNum = Math.floor(Math.random() * (memberCount))
+			for (let i = 0; i < grpMemberCount; i++) {
+				let ranNum = Math.floor(Math.random() * (membersCopy.length))
 				currentGroup.push(membersCopy[ranNum])
 				membersCopy.splice(ranNum, 1)
 			}
-
 		}
 
 		groups.push(currentGroup)
@@ -39,5 +37,5 @@ function randomGroup(members, groupNumber){
 	return groups
 }
 
-let members = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
-console.log(randomGroup(members, 3))
+let members = ['Andy', 'Ben', 'Carol', 'Denny', 'Eric']
+console.log(randomGroup(members, 2))
